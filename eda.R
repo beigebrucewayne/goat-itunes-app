@@ -7,8 +7,9 @@ big_data  <- read_csv("./big_data_reviews.csv")
 
 # count words
 
-count_words <- data %>%
-  unnest_tokens(word, Review) %>%
+count_words <- big_data %>%
+  select(-date) %>%
+  unnest_tokens(word, review) %>%
   anti_join(stop_words) %>%
   mutate(word = str_extract(word, "[a-z']+")) %>%
   drop_na() %>%
@@ -16,8 +17,9 @@ count_words <- data %>%
 
 # words
 
-review_words  <- data %>%
-  unnest_tokens(word, Review) %>%
+review_words  <- big_data %>%
+  select(-date) %>%
+  unnest_tokens(word, review) %>%
   anti_join(stop_words) %>%
   mutate(word = str_extract(word, "[a-z']+")) %>%
   drop_na()
@@ -40,13 +42,13 @@ count_words %>%
 
 ### word avg ratings
 
-word_freq <- data %>%
-  unnest_tokens(word, Review) %>%
+word_freq <- big_data %>%
+  unnest_tokens(word, review) %>%
   anti_join(stop_words) %>%
   mutate(word = str_extract(word, "[a-z']+")) %>%
   drop_na() %>%
   group_by(word) %>%
-  mutate(Avg_Rating = mean(Rating))
+  mutate(avg_rating = mean(rating))
 
 ### Most Common + / - words
 
@@ -81,8 +83,9 @@ word_cloud <- review_words %>%
   count(word, sentiment, sort = TRUE) %>%
   acast(word ~ sentiment, value.var = "n", fill = 0) %>%
   comparison.cloud(colors = c("#F8766D", "#00BFC4"),
-                   max.words = 200,
+                   max.words = 300,
                    random.order = TRUE,
                    rot.per = .2)
 
 
+# 1 star reviews
