@@ -32,8 +32,9 @@ count_words %>%
        subtitle = "Not including stop words (the, to, a, etc..)",
        y = "count") +
   theme_hc(bgcolor = "darkunica") +
-  scale_colour_hc("darkunica") +
-  # theme_fivethirtyeight() +
+  scale_fill_hc("darkunica") +
+  theme(axis.text.y = element_text(colour = '#FFFFFF'),
+        panel.grid.major.y = element_line(colour = '#2A2A2B')) +
   coord_flip()
 
 ### word frequencies
@@ -62,7 +63,9 @@ word_sentiments %>%
   geom_col(show.legend = FALSE) +
   facet_wrap(~sentiment, scales = "free_y") +
   labs(title = "Most Used Positive / Negative Words: GOAT App Reviews",
-       y = "Count") +
+       y = "count") +
   theme_hc(bgcolor = "darkunica") +
-  # theme_fivethirtyeight() +
+  scale_fill_hc("darkunica") +
+  theme(axis.text.y = element_text(colour = '#FFFFFF'),
+        panel.grid.major.y = element_line(colour = '#2A2A2B')) +
   coord_flip()
