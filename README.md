@@ -20,7 +20,7 @@
     - clean text using regex
     - `str_extract(word, "[a-z']+")`
 
-### Overview
+### Word Frequency
 
 - Most Frequent Words In Review  
 
@@ -42,11 +42,13 @@ bought | 3.72
 seller | 2.58
 love | 4.69
 
+- Most Used Words: 1 Star Reviews
+
+![bad_words](https://i.imgur.com/pm1HwQ7.png)
+
+## Sentiment Analysis
+
 - Most Frequent Words + Sentiment
 
 ![words_sentiment](https://i.imgur.com/ybWufX1.png)
 ![wordcloud](https://i.imgur.com/XHHTES7.png)
-
-- Most Used Words: 1 Star Reviews
-
-![bad_words](https://i.imgur.com/pm1HwQ7.png)
