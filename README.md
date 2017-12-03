@@ -41,8 +41,6 @@ pair | 3.07
 easy | 4.68
 prices | 4.76
 
-![bad_words](https://i.imgur.com/DCcgZNH.png)
-
 &nbsp;
 ## Term Frequency - Inverse Document Frequency
 
