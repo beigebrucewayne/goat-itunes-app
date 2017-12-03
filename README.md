@@ -52,6 +52,11 @@ prices | 4.76
 &nbsp;
 ## Bigram Network Graph
 
-[🚨 INTERACTIVE LIVE VERSION 🚨](http://d3-bigram-network.bitballoon.com/)
+[🚨 INTERACTIVE LIVE VERSION 🚨](http://baby-network.bitballoon.com)
 
-![static_visual](https://i.imgur.com/nlhhXyg.png)
+![static_visual](https://i.imgur.com/nlhhXyg.png)  
+
+&nbsp;
+[🔥 INTERACTIVE LIVE VERSION 🔥](http://d3-bigram-network.bitballoon.com/)
+
+![static_viz](https://i.imgur.com/LNewaPT.png)

@@ -145,28 +145,30 @@ bigram <- big_data %>%
   unnest_tokens(bigram, review, token = "ngrams", n = 2) %>%
   separate(bigram, c("word1", "word2"), sep = " ")
 
-bigram_filtered <- bigram %>%
-  filter(!word1 %in% stop_words$word) %>%
-  filter(!word2 %in% stop_words$word)
+# bigram_filtered <- bigram %>%
+  # filter(!word1 %in% stop_words$word) %>%
+  # filter(!word2 %in% stop_words$word)
 
-bigram_counts <- bigram_filtered %>%
+# bigram_counts <- bigram_filtered %>%
+bigram_counts <- bigram %>%
   count(word1, word2, sort = TRUE)
 
 bigram_graph <- bigram_counts %>%
   filter(n > 3) %>%
-  graph.data.frame(directed = FALSE)
+  graph.data.frame(directed = TRUE)
 
 bigram_graph  <- simplify(bigram_graph)
 
-bg_wt <- cluster_walktrap(bigram_graph, steps = 1)
+bg_wt <- cluster_walktrap(bigram_graph, steps = 25)
 
 bg_members <- membership(bg_wt)
 
 bg_list <- igraph_to_networkD3(bigram_graph, group = bg_members)
 
-forceNetwork(Links = bg_list$link, Nodes = bg_list$nodes,
+bg_d3 <- forceNetwork(Links = bg_list$link, Nodes = bg_list$nodes,
              Source = 'source', Target = 'target',
              NodeID = 'name', Group = 'group',
-             zoom = TRUE, linkDistance = 80,
-             bounded = TRUE, opacity = 0.8,
-             opacityNoHover = TRUE, fontSize = 12)
+             zoom = TRUE, linkDistance = 50,
+             bounded = TRUE, opacity = 0.5,
+             opacityNoHover = FALSE, fontSize = 15,
+             fontFamily = "sans-serif", legend = TRUE)
