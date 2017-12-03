@@ -44,6 +44,15 @@ prices | 4.76
 ![bad_words](https://i.imgur.com/DCcgZNH.png)
 
 &nbsp;
+## Term Frequency - Inverse Document Frequency
+
+Essentially, finding out which individual words are most unique to each given rating. TF (term fequency) is what it sounds like. However, the wrinkle comes in through the IDF (inverse document frequency).
+
+> Tf-idf stands for term frequency-inverse document frequency, and the tf-idf weight is a weight often used in information retrieval and text mining. This weight is a statistical measure used to evaluate how important a word is to a document in a collection or corpus. The importance increases proportionally to the number of times a word appears in the document but is offset by the frequency of the word in the corpus. Variations of the tf-idf weighting scheme are often used by search engines as a central tool in scoring and ranking a document's relevance given a user query - [more here](http://www.tfidf.com/).
+
+![tfidf](https://i.imgur.com/0oYd11t.jpg)
+
+&nbsp;
 ## Sentiment Analysis
 
 ![words_sentiment](https://i.imgur.com/HZSj5IK.png)
@@ -52,7 +61,7 @@ prices | 4.76
 &nbsp;
 ## Network Graph
 
-The first graph reveals high traffic connections in app reviews without stop words. The second graph includes them, thus the noise. However, you can select on a node and the background will become somewhat opaque. It's interesting to see all of the various connections and what individuals words standout as hubs. Admittedly, it's more for style points than actual value.  
+The first graph reveals high traffic connections in app reviews without stop words. The second graph includes them, thus the noise. However, you can select on a node and the background will become somewhat opaque. It's interesting to see all of the various connections and what individual words standout as hubs. Admittedly, it's more for style points than actual value.  
 
 [🚨 INTERACTIVE LIVE VERSION 🚨](http://baby-network.bitballoon.com)
 

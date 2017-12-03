@@ -168,7 +168,67 @@ bg_list <- igraph_to_networkD3(bigram_graph, group = bg_members)
 bg_d3 <- forceNetwork(Links = bg_list$link, Nodes = bg_list$nodes,
              Source = 'source', Target = 'target',
              NodeID = 'name', Group = 'group',
-             zoom = TRUE, linkDistance = 50,
-             bounded = TRUE, opacity = 0.5,
-             opacityNoHover = FALSE, fontSize = 15,
-             fontFamily = "sans-serif", legend = TRUE)
+             zoom = TRUE, linkDistance = 70,
+             bounded = TRUE, opacity = 0.75,
+             opacityNoHover = FALSE, fontSize = 12,
+             fontFamily = "sans-serif")
+
+
+# pairwise correlations
+library(widyr)
+
+bad_words <- big_data %>%
+  unnest_tokens(word, review) %>%
+  select(rating, word) %>%
+  filter(!word %in% stop_words$word)
+
+word_pairs <- bad_words %>%
+  pairwise_count(word, rating, sort = TRUE)
+
+word_cors <- bad_words %>%
+  group_by(word) %>%
+  filter(n() >= 20) %>%
+  pairwise_cor(word, rating, sort = TRUE) %>%
+  drop_na()
+
+word_cors %>%
+  filter(item1 %in% c("buy", "love", "waited", "terrible")) %>%
+  group_by(item1) %>%
+  top_n(3) %>%
+  ungroup() %>%
+  mutate(item2 = reorder(item2, correlation)) %>%
+  ggplot(aes(item2, correlation)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ item1, scales = "free") +
+  theme_hc(bgcolor = "darkunica") +
+  scale_fill_hc("darkunica") +
+  coord_flip()
+
+
+count_words <- big_data %>%
+  select(-date) %>%
+  unnest_tokens(word, review) %>%
+  anti_join(stop_words) %>%
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  drop_na() %>%
+  count(word, rating, sort = TRUE)
+
+words_tf_idf <- count_words %>%
+  bind_tf_idf(word, rating, n) %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(word = factor(word, levels = rev(unique(word))))
+
+words_tf_idf %>%
+  group_by(rating) %>%
+  top_n(15) %>%
+  ungroup %>%
+  ggplot(aes(word, tf_idf, fill = as.character(rating))) +
+  geom_col(show.legend = FALSE) +
+  labs(title = "Highest tf-idf Words In Each Rating",
+       subtitle = "tf-idf formula -> tfidf(t, d, D) = tf(t, d) · idf(t, D)",
+       x = "words",
+       y = "tf-idf score") +
+  theme_hc(bgcolor = "darkunica") +
+  scale_fill_hc("darkunica") +
+  facet_wrap(~rating, ncol = 5, scales = "free") +
+  coord_flip()
