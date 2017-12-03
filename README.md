@@ -2,7 +2,7 @@
 
 ![overview](https://i.imgur.com/54h28Rr.jpg)
 
-## Table of Content
+## Table of Contents
 - [Data](#data)
 - [Most Popular Words](#most-popular-words)
 - [Term Frequency - Inverse Document Frequency](#term-frequency---inverse-document-frequency)
