@@ -1,4 +1,4 @@
-![logo](https://www.goat.com/images/splash/goat-logo-1.jpg)
+![logo](https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.businessofapps.com%2Fwp-content%2Fuploads%2F2016%2F08%2FGOAT-logo.png&f=1)
 
 ## Analyzing iTunes App Reviews for GOAT Sneaker App
 
