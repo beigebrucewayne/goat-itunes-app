@@ -5,7 +5,7 @@
 ## Table of Content
 - [Data](#data)
 - [Most Popular Words](#most-popular-words)
-- [Term Frequency - Inverse Document Frequency](#term-frequency-inverse-document-frequency)
+- [Term Frequency - Inverse Document Frequency](#term-frequency---inverse-document-frequency)
 - [Sentiment Analysis](#sentiment-analysis)
 - [Network Graphs](#network-graph)
 
