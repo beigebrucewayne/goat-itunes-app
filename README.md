@@ -7,7 +7,7 @@
 - [Most Popular Words](#most-popular-words)
 - [Term Frequency - Inverse Document Frequency](#term-frequency---inverse-document-frequency)
 - [Sentiment Analysis](#sentiment-analysis)
-- [Network Graphs](#network-graph)
+- [Network Graphs](#network-graphs)
 
 &nbsp;
 ## Data
@@ -60,7 +60,7 @@ Essentially, finding out which individual words are most unique to each given ra
 ![wordcloud](https://i.imgur.com/3B8oVVN.jpg)
 
 &nbsp;
-## Network Graph
+## Network Graphs
 
 The first graph reveals high traffic connections in app reviews without stop words. The second graph includes them, thus the noise. However, you can select on a node and the background will become somewhat opaque. It's interesting to see all of the various connections and what individual words standout as hubs. Admittedly, it's more for style points than actual value.  
 
