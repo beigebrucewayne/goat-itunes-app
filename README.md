@@ -24,6 +24,8 @@
 
 ![most_frequent_words](https://i.imgur.com/ErCtmQ7.png)
 
+The `Avg. Review Rating` is the cumulative average rating for each review that the word appeared in. For instance, reviews containing the word `seller` had an average rating of 2.81, the lowest average rating of words in the Top 10 of usage.
+
 Word | Avg. Review Rating
 -- | --
 app | 3.65
@@ -36,4 +38,3 @@ price | 3.48
 bought | 3.48
 sneakers | 3.52
 buy | 3.00
-
