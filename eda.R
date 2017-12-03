@@ -3,6 +3,7 @@ library(ggthemes)
 library(tidytext)
 
 data  <- read_csv("./app_reviews.csv")
+big_data  <- read_csv("./big_data_reviews.csv")
 
 # count words
 
@@ -83,3 +84,5 @@ word_cloud <- review_words %>%
                    max.words = 200,
                    random.order = TRUE,
                    rot.per = .2)
+
+
