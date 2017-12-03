@@ -1,6 +1,6 @@
-![logo](https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.businessofapps.com%2Fwp-content%2Fuploads%2F2016%2F08%2FGOAT-logo.png&f=1)
-
 ## Analyzing iTunes App Reviews for GOAT Sneaker App
+
+![overview](https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fkicksaddict.com%2Fwp-content%2Fuploads%2F2015%2F06%2FGOAT-screenshot-set-1.png&f=1)
 
 ### Data
 
