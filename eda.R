@@ -29,3 +29,5 @@ review_words %>%
        x = "# of Appearances") +
   theme_fivethirtyeight() +
   coord_flip()
+
+perfect_5 <- data_reviews %>% filter(Avg_Review == 5)

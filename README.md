@@ -16,6 +16,20 @@
 
 ### Overview
 
-- Most Frequent Words In Reviews
+- Most Frequent Words In Review  
 
 ![most_frequent_words](https://i.imgur.com/ErCtmQ7.png)
+
+Word | Avg. Review Rating
+-- | --
+app | 3.65
+shoes | 3.13
+goat | 3.39
+pair | 2.81
+shoe | 3.52
+seller | 2.32
+price | 3.48
+bought | 3.48
+sneakers | 3.52
+buy | 3.00
+
