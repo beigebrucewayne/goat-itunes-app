@@ -20,7 +20,8 @@
     - clean text using regex
     - `str_extract(word, "[a-z']+")`
 
-### Word Frequency
+&nbsp;
+## Word Frequency
 
 - Most Frequent Words In Review  
 
@@ -46,9 +47,10 @@ love | 4.69
 
 ![bad_words](https://i.imgur.com/pm1HwQ7.png)
 
+&nbsp;
 ## Sentiment Analysis
 
 - Most Frequent Words + Sentiment
 
 ![words_sentiment](https://i.imgur.com/ybWufX1.png)
-![wordcloud](https://i.imgur.com/XHHTES7.png)
+![wordcloud](https://i.imgur.com/hzYdlDw.png)
