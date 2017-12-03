@@ -3,7 +3,7 @@ library(ggthemes)
 library(tidytext)
 
 data  <- read_csv("./app_reviews.csv")
-big_data  <- read_csv("./big_data_reviews.csv")
+big_data  <- read_csv("./bigger_data.csv")
 
 # count words
 
@@ -29,9 +29,10 @@ review_words  <- big_data %>%
 count_words %>%
   filter(n > 10) %>%
   mutate(word = reorder(word, n)) %>%
+  top_n(25) %>%
   ggplot(aes(word, n)) +
   geom_col(aes(fill = "darkunica"), show.legend = FALSE) +
-  labs(title = "Most Used Words: GOAT App Reviews",
+  labs(title = "Top 25 Most Used Words",
        subtitle = "Not including stop words (the, to, a, etc..)",
        y = "count") +
   theme_hc(bgcolor = "darkunica") +
@@ -43,6 +44,7 @@ count_words %>%
 ### word avg ratings
 
 word_freq <- big_data %>%
+  select(-date) %>%
   unnest_tokens(word, review) %>%
   anti_join(stop_words) %>%
   mutate(word = str_extract(word, "[a-z']+")) %>%
@@ -59,13 +61,13 @@ word_sentiments <- review_words %>%
 
 word_sentiments %>%
   group_by(sentiment) %>%
-  top_n(10) %>%
+  top_n(15) %>%
   ungroup() %>%
   mutate(word = reorder(word, n)) %>%
   ggplot(aes(word, n, fill = sentiment)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~sentiment, scales = "free_y") +
-  labs(title = "Most Used Positive / Negative Words: GOAT App Reviews",
+  labs(title = "Most Used Negative / Positive Words",
        y = "count") +
   theme_hc(bgcolor = "darkunica") +
   scale_fill_hc("darkunica") +
@@ -89,3 +91,21 @@ word_cloud <- review_words %>%
 
 
 # 1 star reviews
+
+one_star <- word_freq %>%
+  filter(avg_rating == 1) %>%
+  group_by(word) %>%
+  count(word, sort = TRUE) %>%
+  ungroup() %>%
+  top_n(15) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col(aes(fill = "darkunica"), show.legend = FALSE) +
+  labs(title = "Most Used Words: 1 Star Reviews",
+       subtitle = "Not including stop words (the, to, a etc...)",
+       y = "count") +
+  theme_hc(bgcolor = "darkunica") +
+  scale_fill_hc("darkunica") +
+  theme(axis.text.y = element_text(colour = '#FFFFFF'),
+        panel.grid.major.y = element_line(colour = '#2A2A2B')) +
+  coord_flip()
