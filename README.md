@@ -50,7 +50,9 @@ prices | 4.76
 ![wordcloud](https://i.imgur.com/3B8oVVN.jpg)
 
 &nbsp;
-## Bigram Network Graph
+## Network Graph
+
+The first graph reveals high traffic connections in app reviews without stop words. The second graph includes them, thus the noise. However, you can select on a node and the background will become somewhat opaque. It's interesting to see all of the various connections and what individuals words standout as hubs. Admittedly, it's more for style points than actual value.  
 
 [🚨 INTERACTIVE LIVE VERSION 🚨](http://baby-network.bitballoon.com)
 
