@@ -2,6 +2,13 @@
 
 ![overview](https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fkicksaddict.com%2Fwp-content%2Fuploads%2F2015%2F06%2FGOAT-screenshot-set-1.png&f=1)
 
+## Table of Content
+- [Data](#data)
+- [Most Popular Words](#most-popular-words)
+- [Term Frequency - Inverse Document Frequency](#term-frequency-inverse-document-frequency)
+- [Sentiment Analysis](#sentiment-analysis)
+- [Network Graphs](#network-graph)
+
 &nbsp;
 ## Data
 
@@ -17,12 +24,8 @@
     - droplevels() -> didn't work
     - `solution`: write it to a CSV and re-import
 
-- Reviews -> weird characters
-    - clean text using regex
-    - `str_extract(word, "[a-z']+")`
-
 &nbsp;
-## Word Frequency
+## Most Popular Words
 
 ![most_frequent_words](https://i.imgur.com/Zb8YAP8.png)
 
