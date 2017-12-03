@@ -24,33 +24,27 @@
 &nbsp;
 ## Word Frequency
 
-- Most Frequent Words In Review  
+![most_frequent_words](https://i.imgur.com/Zb8YAP8.png)
 
-![most_frequent_words](https://i.imgur.com/UkXcKJx.png)
-
-The `Avg. Review Rating` is the cumulative average rating for each review that the word appeared in. For instance, reviews containing the word `pair` had an average rating of 2.81, the lowest average rating of words in the Top 10 of usage.
+The `Avg. Review Rating` is the cumulative average rating for each review that the word appeared in. For instance, reviews containing the word `pair` had an average rating of 3.07, the lowest average rating of words in the Top 10 of usage.
 
 Word | Avg. Review Rating
 -- | --
-app | 4.22
-shoes | 3.64
-goat | 3.90
-shoe | 4.07
-sneakers | 4.34
-buy | 4.00
-love | 4.78
-pair | 2.81
-price | 3.84
-sell | 3.68
+app | 4.23
+shoes | 3.72
+goat | 3.92
+shoe | 4.13
+sneakers | 4.46
+buy | 4.08
+love | 4.80
+pair | 3.07
+easy | 4.68
+prices | 4.76
 
-- Most Used Words: 1 Star Reviews
-
-![bad_words](https://i.imgur.com/YHb1dem.png)
+![bad_words](https://i.imgur.com/DCcgZNH.png)
 
 &nbsp;
 ## Sentiment Analysis
 
-- Most Frequent Words + Sentiment
-
-![words_sentiment](https://i.imgur.com/eqiWgSn.png)
-![wordcloud](https://i.imgur.com/M11cXKn.jpg)
+![words_sentiment](https://i.imgur.com/HZSj5IK.png)
+![wordcloud](https://i.imgur.com/3B8oVVN.jpg)

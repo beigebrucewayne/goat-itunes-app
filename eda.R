@@ -2,8 +2,7 @@ library(tidyverse)
 library(ggthemes)
 library(tidytext)
 
-data  <- read_csv("./app_reviews.csv")
-big_data  <- read_csv("./bigger_data.csv")
+big_data  <- read_csv("./app_reviews.csv")
 
 # count words
 
@@ -85,7 +84,7 @@ word_cloud <- review_words %>%
   count(word, sentiment, sort = TRUE) %>%
   acast(word ~ sentiment, value.var = "n", fill = 0) %>%
   comparison.cloud(colors = c("#F8766D", "#00BFC4"),
-                   max.words = 300,
+                   max.words = 310,
                    random.order = TRUE,
                    rot.per = .2)
 
@@ -101,7 +100,7 @@ one_star <- word_freq %>%
   mutate(word = reorder(word, n)) %>%
   ggplot(aes(word, n)) +
   geom_col(aes(fill = "darkunica"), show.legend = FALSE) +
-  labs(title = "Most Used Words: 1 Star Reviews",
+  labs(title = "Most Used Words In 1 Star Reviews",
        subtitle = "Not including stop words (the, to, a etc...)",
        y = "count") +
   theme_hc(bgcolor = "darkunica") +
@@ -109,3 +108,65 @@ one_star <- word_freq %>%
   theme(axis.text.y = element_text(colour = '#FFFFFF'),
         panel.grid.major.y = element_line(colour = '#2A2A2B')) +
   coord_flip()
+
+
+# trigram
+
+trigram <- big_data %>%
+  select(-date) %>%
+  unnest_tokens(trigram, review, token = "ngrams", n = 3) %>%
+  group_by(trigram) %>%
+  mutate(avg_rating = mean(rating)) %>%
+  count(trigram, avg_rating, sort = TRUE) %>%
+  filter(avg_rating < 2) %>%
+  arrange(avg_rating)
+
+rating_sentiment <- big_data %>%
+  select(-date) %>%
+  unnest_tokens(bigram, review, token = "ngrams", n = 2) %>%
+  group_by(bigram) %>%
+  top_n(10) %>%
+  count(bigram, rating, sort = TRUE) %>%
+  ungroup() %>%
+  mutate(bigram = reorder(bigram, n)) %>%
+  ggplot(aes(bigram, n)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~rating, scales = "free_y") +
+  theme_hc(bgcolor = "darkunica") +
+  scale_fill_hc("darkunica") +
+  coord_flip()
+
+# network graph
+
+library(igraph)
+library(networkD3)
+
+bigram <- big_data %>%
+  unnest_tokens(bigram, review, token = "ngrams", n = 2) %>%
+  separate(bigram, c("word1", "word2"), sep = " ")
+
+bigram_filtered <- bigram %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word)
+
+bigram_counts <- bigram_filtered %>%
+  count(word1, word2, sort = TRUE)
+
+bigram_graph <- bigram_counts %>%
+  filter(n > 3) %>%
+  graph.data.frame(directed = FALSE)
+
+bigram_graph  <- simplify(bigram_graph)
+
+bg_wt <- cluster_walktrap(bigram_graph, steps = 1)
+
+bg_members <- membership(bg_wt)
+
+bg_list <- igraph_to_networkD3(bigram_graph, group = bg_members)
+
+forceNetwork(Links = bg_list$link, Nodes = bg_list$nodes,
+             Source = 'source', Target = 'target',
+             NodeID = 'name', Group = 'group',
+             zoom = TRUE, linkDistance = 80,
+             bounded = TRUE, opacity = 0.8,
+             opacityNoHover = TRUE, fontSize = 12)
