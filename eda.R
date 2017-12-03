@@ -5,6 +5,7 @@ library(tidytext)
 data  <- read_csv("./app_reviews.csv")
 
 # count words
+
 count_words <- data %>%
   unnest_tokens(word, Review) %>%
   anti_join(stop_words) %>%
@@ -12,16 +13,15 @@ count_words <- data %>%
   drop_na() %>%
   count(word, sort = TRUE)
 
+# words
+
 review_words  <- data %>%
   unnest_tokens(word, Review) %>%
   anti_join(stop_words) %>%
   mutate(word = str_extract(word, "[a-z']+")) %>%
   drop_na()
 
-data_reviews <- data %>%
-  unnest_tokens(word, Review) %>%
-  group_by(word) %>%
-  mutate(Avg_Review = mean(Rating))
+# graphing word counts
 
 count_words %>%
   filter(n > 10) %>%
@@ -37,7 +37,7 @@ count_words %>%
         panel.grid.major.y = element_line(colour = '#2A2A2B')) +
   coord_flip()
 
-### word frequencies
+### word avg ratings
 
 word_freq <- data %>%
   unnest_tokens(word, Review) %>%
@@ -69,3 +69,17 @@ word_sentiments %>%
   theme(axis.text.y = element_text(colour = '#FFFFFF'),
         panel.grid.major.y = element_line(colour = '#2A2A2B')) +
   coord_flip()
+
+# word cloud
+
+library(reshape2)
+library(wordcloud)
+
+word_cloud <- review_words %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("#F8766D", "#00BFC4"),
+                   max.words = 200,
+                   random.order = TRUE,
+                   rot.per = .2)

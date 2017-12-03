@@ -42,3 +42,4 @@ buy | 3.00
 - Most Frequent Words + Sentiment
 
 ![words_sentiment](https://i.imgur.com/PxXMBm3.png)
+![wordcloud](https://i.imgur.com/hC5grpJ.jpg)
