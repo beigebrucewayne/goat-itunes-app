@@ -1,6 +1,6 @@
 ## Analyzing iTunes App Reviews for GOAT Sneaker App
 
-### Getting Data
+### Data
 
 - Utilize R package [itunesR](https://github.com/amrrs/itunesr)
     - Allows access to iTunes app data that isn't accessible in iTunes Connect
@@ -13,6 +13,10 @@
     - review text was coming in as factors with all lines being added as levels
     - droplevels() -> didn't work
     - `solution`: write it to a CSV and re-import
+
+- Reviews -> weird characters
+    - clean text using regex
+    - `str_extract(word, "[a-z']+")`
 
 ### Overview
 
