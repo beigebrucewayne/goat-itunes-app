@@ -1,5 +1,5 @@
 ## Analyzing iTunes App Reviews for GOAT Sneaker App
-&nbsp;
+
 ### Getting Data
 
 - Utilize R package [itunesR](https://github.com/amrrs/itunesr)
