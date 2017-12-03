@@ -1,4 +1,3 @@
-<body style="background-color:white;">
 ## Analyzing GOAT Sneaker App iTunes Reviews  
 
 ![overview](https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fkicksaddict.com%2Fwp-content%2Fuploads%2F2015%2F06%2FGOAT-screenshot-set-1.png&f=1)
@@ -50,3 +49,9 @@ prices | 4.76
 ![words_sentiment](https://i.imgur.com/HZSj5IK.png)
 ![wordcloud](https://i.imgur.com/3B8oVVN.jpg)
 
+&nbsp;
+## Bigram Network Graph
+
+[🚨 INTERACTIVE LIVE VERSION 🚨](http://d3-bigram-network.bitballoon.com/)
+
+![static_visual](https://i.imgur.com/nlhhXyg.png)
