@@ -18,3 +18,5 @@ gr16 <- getReviews(966758561, 'ca', 4)
 
 gr <- data.frame()
 gr <- rbind(gr, gr1, gr2, gr3, gr4, gr5, gr6, gr8, gr9, gr10, gr11, gr12, gr13, gr14, gr15, gr16)
+
+gr <- data.frame(lapply(gr, as.character), stringsAsFactors =  FALSE)

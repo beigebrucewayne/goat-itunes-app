@@ -311,4 +311,3 @@ word_ratios %>%
         panel.border = element_blank(),
         axis.text.y = element_text(colour = '#FFFFFF'),
         panel.grid.minor = element_blank())
-

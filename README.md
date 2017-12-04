@@ -22,7 +22,11 @@
 - Reviews -> came in as Factors
     - review text was coming in as factors with all lines being added as levels
     - droplevels() -> didn't work
-    - `solution`: write it to a CSV and re-import
+    - `solution`:
+&nbsp;
+```r
+df <- data.frame(lapply(df, as.character), stringsAsFactors = FALSE)
+```
 
 &nbsp;
 ## Most Popular Words
