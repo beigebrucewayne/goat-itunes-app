@@ -44,6 +44,7 @@ pair | 3.07
 easy | 4.68
 prices | 4.76
 
+![oddsratios](https://i.imgur.com/d0HElNW.png)
 ![five_versus_one](https://i.imgur.com/3F5IlDU.jpg)
 
 &nbsp;

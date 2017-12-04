@@ -255,7 +255,7 @@ frequency  <- frequency %>%
 
 ggplot(frequency, aes(`5`, `1`)) +
   geom_jitter(alpha = 0.1, size = 2, width = 0.1, height = 0.1) +
-  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  geom_text(aes(label = word, color = 'white'), check_overlap = TRUE, vjust = 1.5) +
   scale_x_log10(labels = percent_format()) +
   scale_y_log10(labels = percent_format()) +
   geom_abline(colour = 'white') +
@@ -268,7 +268,47 @@ ggplot(frequency, aes(`5`, `1`)) +
         legend.title = element_blank(),
         panel.grid.major = element_blank(),
         legend.key = element_blank(),
-        legend.position = element_blank(),
+        legend.position = "",
         panel.grid.major.y = element_blank(),
         panel.border = element_blank(),
         panel.grid.minor = element_blank())
+
+# word ratios
+
+word_ratios  <- big_data %>%
+  unnest_tokens(word, review) %>%
+  count(word, rating) %>%
+  filter(sum(n) >= 10) %>%
+  ungroup() %>%
+  spread(rating, n, fill = 0) %>%
+  select(word, `5`, `1`) %>%
+  mutate_if(is.numeric, funs((. + 1) / sum(. + 1))) %>%
+  mutate(logratio = log(`5` / `1`)) %>%
+  arrange(desc(logratio))
+
+# most distinct words each rating
+
+word_ratios %>%
+  group_by(logratio < 0) %>%
+  top_n(15, abs(logratio)) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, logratio)) %>%
+  ggplot(aes(word, logratio, fill = logratio < 0)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Comparing Odds Ratios",
+       subtitle = "Distinct 5 Star Words vs 1 Star Words",
+       y = "log odds ratio (5 rating / 1 rating)") +
+  scale_fill_discrete(name = "", labels = c("5", "1")) +
+  theme_hc(bgcolor = "darkunica") +
+  scale_fill_hc("darkunica") +
+  theme(axis.line = element_blank(),
+        legend.title = element_blank(),
+        panel.grid.major = element_blank(),
+        legend.key = element_blank(),
+        legend.position = "",
+        panel.grid.major.y = element_blank(),
+        panel.border = element_blank(),
+        axis.text.y = element_text(colour = '#FFFFFF'),
+        panel.grid.minor = element_blank())
+
