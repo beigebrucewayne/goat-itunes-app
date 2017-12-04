@@ -1,8 +1,9 @@
 library(tidyverse)
+library(scales)
 library(ggthemes)
 library(tidytext)
 
-big_data  <- read_csv("./app_reviews.csv")
+big_data  <- read_csv("./data/app_reviews.csv")
 
 # count words
 
@@ -232,3 +233,42 @@ words_tf_idf %>%
   scale_fill_hc("darkunica") +
   facet_wrap(~rating, ncol = 5, scales = "free") +
   coord_flip()
+
+# frequency
+
+library(tidyr)
+
+frequency <- big_data %>%
+  unnest_tokens(word, review) %>%
+  group_by(rating) %>%
+  count(word, sort = TRUE) %>%
+  left_join(big_data %>%
+            group_by(rating) %>%
+            summarise(total = n())) %>%
+  mutate(freq = n / total)
+
+frequency  <- frequency %>%
+  select(rating, word, freq) %>%
+  spread(rating, freq) %>%
+  select(word, `5`, `1`) %>%
+  arrange(`5`, `1`)
+
+ggplot(frequency, aes(`5`, `1`)) +
+  geom_jitter(alpha = 0.1, size = 2, width = 0.1, height = 0.1) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(colour = 'white') +
+  labs(title = "Word Frequency by Rating",
+       subtitle = "Which words are more likely to appear in which rating",
+       y = "more likely used in 1 star review",
+       x = "more likely used in 5 star review") +
+  theme_hc(bgcolor = "darkunica") +
+  theme(axis.line = element_blank(),
+        legend.title = element_blank(),
+        panel.grid.major = element_blank(),
+        legend.key = element_blank(),
+        legend.position = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.border = element_blank(),
+        panel.grid.minor = element_blank())

@@ -44,6 +44,8 @@ pair | 3.07
 easy | 4.68
 prices | 4.76
 
+![five_versus_one](https://i.imgur.com/3F5IlDU.jpg)
+
 &nbsp;
 ## Term Frequency - Inverse Document Frequency
 
