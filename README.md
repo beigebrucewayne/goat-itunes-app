@@ -8,6 +8,12 @@
 - [Term Frequency - Inverse Document Frequency](#term-frequency---inverse-document-frequency)
 - [Sentiment Analysis](#sentiment-analysis)
 - [Network Graphs](#network-graphs)
+- [Shiny App](https://bastcastle.shinyapps.io/goat-app/)
+
+&nbsp;
+## Screenshot of Web App
+
+![webapp](https://i.imgur.com/Cahh7FG.png)
 
 &nbsp;
 ## Data
